@@ -1,5 +1,3 @@
-const { NotImplementedError } = require('../extensions/index.js');
-
 /**
  * Given matrix, a rectangular matrix of integers,
  * just add up all the values that don't appear below a "0".
@@ -16,11 +14,24 @@ const { NotImplementedError } = require('../extensions/index.js');
  *
  * The result should be 9
  */
-function getMatrixElementsSum(/* matrix */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+
+function getMatrixElementsSum(matrix) {
+  let result = 0;
+
+  matrix.map((line, lineIndex) => {
+    line.map((digit, digitIndex) => {
+      if (
+        !matrix[lineIndex - 1] ||
+        (matrix[lineIndex - 1] && matrix[lineIndex - 1][digitIndex] > 0)
+      ) {
+        result += digit;
+      }
+    });
+  });
+
+  return result;
 }
 
 module.exports = {
-  getMatrixElementsSum
+  getMatrixElementsSum,
 };
